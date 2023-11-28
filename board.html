@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Board</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .portfolio {
+      max-width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .project-header {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column-reverse; /* 설명글을 슬라이드쇼 밑으로 이동 */
+    }
+
+    .project-slider {
+      width: 100%; /* 슬라이드쇼 전체 너비 */
+
+    }
+
+    .project-description {
+      padding: 20px;
+    }
+
+    .project-info {
+      font-size: 20px;
+      margin-bottom: 20px;
+      line-height: 2;
+    }
+
+    .user-review {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+      height: auto;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="portfolio">
+  <div class="project-header">
+    <h1>게시판 프로젝트</h1>
+  </div>
+
+  <div class="project-slider">
+    <!-- 슬라이드쇼 -->
+    <div><img src="/assets/img/board/board1.png" ></div>
+    <div><img src="/assets/img/board/board2.png" ></div>
+    <div><img src="/assets/img/board/board3.png" ></div>
+
+
+  </div>
+  <div class="project-content">
+
+    <div class="project-description">
+      <!-- 설명글 -->
+      <div class="project-info">
+        <h2>GitHub</h2>
+        <a href="https://github.com/hyh-b/board" target="_blank">https://github.com/hyh-b/board</a>
+      </div>
+
+      <div class="project-info">
+        <h2>개발 인원 및 기간</h2>
+        <p>개발 인원: 1명  작업 기간: 2023-10-25~2023-11-14</p>
+      </div>
+
+      <div class="project-info">
+        <h2>사용기술</h2>
+        <p>Java, HTML, thymeleaf, SpringBoot, Spring Security, Spring JPA, H2, MariaDB, AWS, GitHub, nginx</p>
+      </div>
+
+      <div class="project-info">
+        <h2>프로젝트 설명</h2>
+        <p>자동 배포와 무중단 배포를 경험해보기 위한 게시판 프로젝트<br>
+
+        </p>
+      </div>
+
+      <div class="project-info">
+        <h2>내 역할</h2>
+        <ul>
+          <li>spring security의 oauth2를 이용한 소셜(google, naver, kakao) 로그인 및 회원가입</li>
+          <li>junit을 이용한 테스트 코드 작성 및 실행</li>
+          <li>게시글의 기본적인 CRUD</li>
+          <li>github action과 aws codedeploy, s3를 이용한 자동 배포</li>
+          <li>nginx를 이용한 무중단 배포</li>
+
+        </ul>
+      </div>
+
+      <div class="project-info">
+        <h2>문제점과 해결과정</h2>
+        <h4>1. Spring JPA 테이블 생성 오류</h4>
+        <p>문제 상황: 회원가입과 로그인 기능을 위해 user 테이블을 만드려고 <br>
+          JPA와 H2db를 사용해 Entity를 생성하던 중 오류발생 <br>
+        문제 발생 이유: 만드려는 테이블명인 user이 h2db의 예약어여서 문제가 생겼던 것.<br><br>
+        해결방안:
+        <ul><li>user Entity에 @Table어노테이션을 이용해 테이블명을 users로 변경했다. </li>
+
+        </ul>
+        <h4>2. ec2에서 ./gradlew test 시 무한로딩 </h4>
+        <p>문제 상황: 배포작업을 위해 ec2 서버에 git clone으로 내 프로젝트를 clone 한 뒤<br>
+          ./gradlew test를 실행했더니 무한 로딩이 걸림<br>
+          <br>문제 발생 이유: aws에서 제공하는 프리티어를 이용해 서버를 구축했는데<br>
+          프리티어로 사용가능한 서버 램 용량이 너무 적어 메모리 부족으로 과부하가 걸린 것
+          <br><br>
+          해결방안:
+
+        </p>
+        <ul>
+          <li>ec2 리눅스 서버의 HDD공간을 메모리로 사용할 수 있게 SWAP메모리로 지정 </li>
+        </ul>
+
+        <h4>3. git action을 이용해 자동배포시 오류 </h4>
+        <p>문제 상황: github에 push가 이루어지면 자동으로 새로운 버전을 배포하게 만든<br>
+          스크립트를 만들고 github에 push를 할 시 배포 오류 발생<br>
+          <br>문제 발생 이유: spring boot 2.5버전 이상부턴 빌드 시 <br>
+          일반 jar파일과 plain.jar파일이 생겨나는데 plain.jar은 애플리케이션 실행에 필요한<br>
+          의존성을 포함하고 있지 않은데 일반 jar파일이 아닌 plain.jar이 실행되어 오류가 났던 것
+          <br><br>
+          해결방안:
+        </p>
+        <ul>
+          <li>build.gradle에 jar {
+            enabled = false
+            } 코드를 입력해 plain.jar파일 생성 막음</li>
+        </ul>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.project-slider').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear'
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAB</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .portfolio {
+      max-width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .project-header {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column-reverse; /* 설명글을 슬라이드쇼 밑으로 이동 */
+    }
+
+    .project-slider {
+      width: 100%; /* 슬라이드쇼 전체 너비 */
+
+    }
+
+    .project-description {
+      padding: 20px;
+    }
+
+    .project-info {
+      font-size: 20px;
+      margin-bottom: 20px;
+      line-height: 2;
+    }
+
+    .user-review {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+      height: auto;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="portfolio">
+  <div class="project-header">
+    <h1>Rock At your Body</h1>
+  </div>
+
+  <div class="project-slider">
+    <!-- 슬라이드쇼 -->
+    <div><img src="/assets/img/rab/rab.png" ></div>
+    <div><img src="/assets/img/rab/rab1.png" ></div>
+    <div><img src="/assets/img/rab/rab2.png" ></div>
+    <div><img src="/assets/img/rab/rab3.png" ></div>
+    <div><img src="/assets/img/rab/rab5.5.png" ></div>
+    <div><img src="/assets/img/rab/rab4.png" ></div>
+    <div><img src="/assets/img/rab/rab5.png" ></div>
+    <div><img src="/assets/img/rab/rab6.png" ></div>
+    <div><img src="/assets/img/rab/rab6.5.png" ></div>
+    <div><img src="/assets/img/rab/rab7.png" ></div>
+    <div><img src="/assets/img/rab/rab8.png" ></div>
+    <div><img src="/assets/img/rab/rab9.png" ></div>
+    <div><img src="/assets/img/rab/rab10.png" ></div>
+  </div>
+  <div class="project-content">
+
+    <div class="project-description">
+      <!-- 설명글 -->
+      <div class="project-info">
+        <h2>GitHub</h2>
+        <a href="https://github.com/hyh-b/RAB" target="_blank">https://github.com/hyh-b/RAB</a>
+      </div>
+
+      <div class="project-info">
+        <h2>개발 인원 및 기간</h2>
+        <p>개발 인원: 5명  작업 기간: 2023-06-26~2023-07-28</p>
+      </div>
+
+      <div class="project-info">
+        <h2>사용기술</h2>
+        <p>Java, Javascript, CSS, Jsp, SpringBoot, Spring Security, MariaDB, AWS EC2, GitHub</p>
+      </div>
+
+      <div class="project-info">
+        <h2>프로젝트 설명</h2>
+        <p>당신의 식단과 운동을 기록하고 정리하고 눈으로 확인하세요!<br>
+          직접 음식의 이름을 입력하시거나, 업로드한 음식사진을 인식하여 칼로리, 영양정보 등을 제공합니다.<br>
+          운동 역시 이름만 입력하시면 활동칼로리를 분단위로 계산해서 알려드립니다.<br>
+          히스토리를 날짜별로 남겨서 언제든 당신의 몸을 추적할 수 있는 개인의 저장소로 사용하세요.<br>
+          입력한 모든 정보는 메인화면 한 곳에서 차트로 한 눈에 알아보실 수 있습니다.</p>
+      </div>
+
+      <div class="project-info">
+        <h2>내 역할</h2>
+        <ul>
+          <li>spring security를 이용한 로그인, 소셜 로그인 및 회원가입 디자인 및 기능 구현</li>
+          <li>아이디 찾기 및 jwt token으로 유효성 검사 후 비밀번호 재설정 기능 구현</li>
+          <li>운동 페이지의 디자인 및 날짜별 운동기록 기능 구현</li>
+          <li>슬라이스쇼로 보여지는 사진 업로드 및 앨범 기능 구현</li>
+          <li>관리자 페이지의 회원 조회 디자인 및 기능 구현</li>
+
+        </ul>
+      </div>
+
+      <div class="project-info">
+        <h2>문제점과 해결과정</h2>
+        <h4>1. aws ec2에 설치한 db해킹</h4>
+        <p>문제 상황: 프로젝트 진행 초기에 데이터베이스가 해킹당해 기존 테이블들이 삭제되고<br> 복구를 원한다면 비트코인을 요구하는 메시지의 테이블만 존재</br><br>
+          문제 발생 이유: 버전관리를 위해 사용한 github에 프로젝트를 public으로 올려놨고<br>
+          db정보 등 중요 정보가 들어있는 application.properties 파일 또한 그대로 올라감. <br>
+          또 한 ec2 서버의 비밀번호가 쉬운 기본 비밀번호로 설정되어 있었음.<Br><br>
+          해결방안: </p>
+          <ul><li>해킹당한 기존 ec2 서버 삭제 후 새로운 서버를 만들고
+            서버 및 데이터베이스의 비밀번호를 어렵게 재설정</li>
+            <li>github의 프로젝트를 public에서 private로 변경</li>
+            <li>aws 방화벽 설정을 통해 프로젝트 멤버 ip만 접속가능하게 설정</li>
+            <li>해킹 전날 백업 해둔 mysqldump파일을 이용해 db의 데이터 복구</li>
+          </ul>
+        <h4>2. 운동 기록 추가시 null 데이터 추가</h4>
+        <p>문제 상황: 내 노트북에서 운동기록을 추가 할 시 문제없이 잘 추가되었지만 <br>
+          팀원의 노트북으로 진행 시 선택한 운동과 함께 null이란 값이 같이 추가 됨<br>
+        <br>문제 발생 이유: 먼저 운동 기록 추가 로직은 운동을 검색 한 뒤 추가 할 운동 종목의 체크박스에 체크 후
+          <br>추가 버튼을 누르면 체크 박스에 체크 된 운동 종목이 추가되는 구조이다.<br>
+          나와 팀원의 차이를 먼저 파악해보니 팀원은 웹사이트의 다크모드가 활성화 되어있었다.<br>
+          그래서 다크모드를 설정하느 코드를 확인해보니 다크모드 또 한 체크박스로 만들어져 있었다.<br>
+          다크모드를 활성화 하면 체크박스에 체크가 되어 이 값 또한 가져오려다 오류가 발생한 것이였다.<br>
+          프로젝트 시작 시 유료로 템플릿을 구매하여 사용하였는데 html코드가 너무 길어 제대로 확인해보지 않았고<br>
+          운동기록 추가 시 검색결과로 나오는 운동데이터에 따로 클래스 지정을 하지않고 <br>
+          안일하게 페이지내의 모든 체크박스의 체크된 데이터를 추가하려다 발생한 오류였다.<br><br>
+          해결방안:
+
+        </p>
+        <ul>
+          <li>검색되는 운동 데이터에 클래스를 지정하고 추가 버튼을 누르면 해당 클래스의 체크박스에 체크된 데이터만 가져오도록 설정</li>
+        </ul>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.project-slider').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      fade: true,
+      cssEase: 'linear'
+    });
+  });
+</script>
+
+</body>
+</html>
