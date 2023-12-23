@@ -58,6 +58,19 @@
       height: auto;
     }
 
+    .slick-dots li {
+      margin: 0 5px; /* 닷 사이의 간격을 조정 */
+    }
+
+    .slick-dots li button {
+      width: 20px; /* 닷의 너비 */
+      height: 20px; /* 닷의 높이 */
+    }
+
+    .slick-dots li button:before {
+      font-size: 20px; /* 닷 내부 아이콘 크기 */
+    }
+
   </style>
 </head>
 <body>
@@ -71,7 +84,9 @@
     <!-- 슬라이드쇼 -->
     <div><img src="/Portfolio1/assets/img/board/board1.png" ></div>
     <div><img src="/Portfolio1/assets/img/board/board2.png" ></div>
-    <div><img src="/Portfolio1/assets/img/board/board3.png" ></div>
+    <div><img src="/Portfolio1/assets/img/board/board4.png" ></div>
+    <div><img src="/Portfolio1/assets/img/board/board5.png" ></div>
+    <div><img src="/Portfolio1/assets/img/board/board6.png" ></div>
 
 
   </div>
@@ -106,7 +121,9 @@
         <ul>
           <li>spring security의 oauth2를 이용한 소셜(google, naver, kakao) 로그인 및 회원가입</li>
           <li>junit을 이용한 테스트 코드 작성 및 실행</li>
-          <li>게시글의 기본적인 CRUD</li>
+          <li>다중파일 업로드가 가능한 게시글의 기본적인 CRUD</li>
+          <li>게시글의 추천기능</li>
+          <li>게시글 리스트 페이징처리</li>
           <li>github action과 aws codedeploy, s3를 이용한 자동 배포</li>
           <li>nginx를 이용한 무중단 배포</li>
 
@@ -115,15 +132,33 @@
 
       <div class="project-info">
         <h2>문제점과 해결과정</h2>
+
         <h4>1. Spring JPA 테이블 생성 오류</h4>
         <p>문제 상황: 회원가입과 로그인 기능을 위해 user 테이블을 만드려고 <br>
           JPA와 H2db를 사용해 Entity를 생성하던 중 오류발생 <br>
         문제 발생 이유: 만드려는 테이블명인 user이 h2db의 예약어여서 문제가 생겼던 것.<br><br>
         해결방안:
-        <ul><li>user Entity에 @Table어노테이션을 이용해 테이블명을 users로 변경했다. </li>
-
+        <ul>
+          <li>user Entity에 @Table어노테이션을 이용해 테이블명을 users로 변경했다. </li>
         </ul>
-        <h4>2. ec2에서 ./gradlew test 시 무한로딩 </h4>
+
+        <h4>2. 추천버튼 클릭 시 추천수 오류</h4>
+        <p>문제 상황: 추천버튼을 클릭 시 추천수가 증가하지 않고 <br>
+          추천을 취소한다면 추천수가 증가되는 문제. <br><br>
+          문제 발생 이유: 추천수 증가 로직이 추천버튼 클릭 시 javascript에서<br>
+          추천정보를 생성하는 sendLike()메서드와 해당 게시물의 추천수를 업데이트 한 뒤 보여주는<br>
+          updateLikeCount()메서드가 실행되는데, 이 떄 sendLike()를 통해 추천테이블의 데이터가<br>
+          만들어지기 전에 updateLikeCount()메서드의 실행이 끝나 한박자 늦게 추천수가 갱신되었던 것.<br><br>
+          해결방안:
+        </p>
+        <ul>
+          <li>Promise를 사용한 순차적 처리 </li>
+          <li>sendLike()메서드에 Promise생성하여 sendLike()의 작업이 끝난 뒤<br>
+            updateLikeCount()메서드 실행</li>
+          <li>추천테이터를 삭제하는 deleteLike()메서드에도 동일하게 적용</li>
+        </ul>
+
+        <h4>3. ec2에서 ./gradlew test 시 무한로딩 </h4>
         <p>문제 상황: 배포작업을 위해 ec2 서버에 git clone으로 내 프로젝트를 clone 한 뒤<br>
           ./gradlew test를 실행했더니 무한 로딩이 걸림<br>
           <br>문제 발생 이유: aws에서 제공하는 프리티어를 이용해 서버를 구축했는데<br>
@@ -136,7 +171,7 @@
           <li>ec2 리눅스 서버의 HDD공간을 메모리로 사용할 수 있게 SWAP메모리로 지정 </li>
         </ul>
 
-        <h4>3. git action을 이용해 자동배포시 오류 </h4>
+        <h4>4. git action을 이용해 자동배포시 오류 </h4>
         <p>문제 상황: github에 push가 이루어지면 자동으로 새로운 버전을 배포하게 만든<br>
           스크립트를 만들고 github에 push를 할 시 배포 오류 발생<br>
           <br>문제 발생 이유: spring boot 2.5버전 이상부턴 빌드 시 <br>
